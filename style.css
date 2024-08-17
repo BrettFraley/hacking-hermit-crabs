@@ -1,0 +1,84 @@
+body {
+    background-color: #ffa5006e;
+    color: #c34821;
+    font-size: 1.2em;
+    padding: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+header {
+    padding: 20px;
+}
+
+.bungee-tint-regular {
+    font-family: "Bungee Tint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }  
+
+#game-stats {
+    display: none;
+    background-color: #999;
+    padding: 5px;
+    border-radius: 5px;
+    position: fixed;
+    top: 10%;
+    margin-left: 10px;
+    opacity: 0.8;
+    min-width: 150px;
+    text-align: left;
+}
+
+#mine-stats span {
+    display: block;
+}
+
+#action-box {
+    display: none;
+    background-color: #ddd;
+    color: #111;
+    border: solid 2px lime;
+    border-radius: 10px;
+    width: 300px;
+    min-height: 150px;
+    padding: 15px;
+}
+
+#action-box-content {
+    margin-bottom: 10px;
+}
+
+.crab-node {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: aqua;
+    color: #111;
+    border-radius: 3px;
+    margin: 10px;
+}
+
+.screen {
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    padding: 2px;
+    background-color: #999;
+    color: limegreen;
+}
+
+.screen-top-bar {
+    width: 100%;
+    font-size: 3px;
+    background-color: #008;
+    color: #eee;
+}
+
+.crab-char  {
+    width: 5px;
+    height: 5px;
+    background-color: #c34821;
+}
+
+

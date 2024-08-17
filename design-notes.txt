@@ -1,0 +1,27 @@
+Brainstorm
+---------------
+
+Little boxes that are 'nodes'
+ -- These little boxes are a hermit crab on/with a 'computer'
+
+Players goal is to grow the crabs and migrate them to larger shells
+
+"When a hermit crab moves into a new shell, it's called molting.
+This process is similar to how reptiles shed their skin,
+as hermit crabs outgrow their exoskeletons and need to shed them.
+Most hermit crabs molt every 12–18 months."
+
+
+-- Randomly assign names to crabs
+-- Randomly place nodes
+-- Depending on screen size, how to break up 'screen blocks'
+   into 50px wide sections to fill
+-- Maybe do 15 'nodes'
+-- Randomly walk crab chars around
+-- Goal is to grow crabs by 10x
+-- Need to be fed and water
+-- Maybe the hacking component is to run machinery to 
+   deliver sustenance to them
+-- Whats the 'game world' time like via months
+-- Every 5 mins a crab may grow.. so one at it's full size takes
+   50 minutes in game..?
