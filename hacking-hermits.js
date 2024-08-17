@@ -3,6 +3,8 @@
 const dom = {
     getEl: id => document.getElementById(id),
     createEl: type => document.createElement(type),
+    assignClass: (el, name) => el.className = name,
+    assignId: (el, name) => el.id = name,
     appendEl: (parentId, el) => {
         let parent = dom.getEl(parentId)
         parent.appendChild(el)
@@ -18,6 +20,8 @@ const dom = {
 
 
 const CONFIG = {
+    crabImagePath: 'hermit-crab.webp',
+    nodeAmount: 15
 }
 
 // DOM Elements
@@ -41,25 +45,63 @@ clearActionButton.addEventListener('click', () => {
 
 const game = {
 
-    playerStats: {
-    },
-
-    gameStats: {
-    },
+    crabNodes: [],
+    playerStats: {},
+    gameStats: {},
 
     dialog: {
- 	instructions: {
-  	    intro: "Inroduction Text",
+ 	    instructions: {
+  	        intro: "Inroduction Text",
             howTo: "How To"
-	}
+	    },
     },
 
     init() {
-
+        for (let i = 0; i < CONFIG.nodeAmount; i++) {
+            game.crabNodes.push(game.generateNode(i)) // i is used for node ids
+        }
     },
 
-    updateStats: () => {
+    generateNode: id => {
+
+        const crabNode =  dom.createEl('div')
+        dom.assignClass(crabNode, 'crab-node')
+        dom.appendEl('arena', crabNode)
+
+        const screen = dom.createEl('div')
+        dom.assignClass(screen, 'screen')
+
+        const screenTopBar = dom.createEl('p')        
+        dom.assignClass(screenTopBar, 'screen-top-bar')
+
+        const menu = dom.createEl('span')
+        const help = dom.createEl('span')
+        menu.innerText = 'Menu'
+        help.innerText = 'Help'
+
+        const nodeInput = dom.createEl('textarea')
+        dom.assignClass(nodeInput, 'node-input')
+
+        const crabChar = dom.createEl('div')
+        dom.assignClass(crabChar, 'crab-char')
+
+        const crabImg = dom.createEl('img')
+        crabImg.src = CONFIG.crabImagePath
+
+        crabNode.appendChild(screen)
+        screen.appendChild(screenTopBar)
+        screenTopBar.appendChild(menu)
+        screenTopBar.appendChild(help)
+        screen.appendChild(nodeInput)
+        crabNode.appendChild(crabChar)
+        crabChar.appendChild(crabImg)
+        
+        crabNode.id = `${id}-crab-node`
+        return crabNode
     },
+
+
+    updateStats: () => {},
 
     // Display action box pop up.
     // promptMode can be 'mine' or 'kit'
@@ -71,7 +113,6 @@ const game = {
         actionBox.style.position = "fixed"
         actionBox.style.left = `${x}px`
         actionBox.style.top = `${y}px`
-
-    }
+    },
 
 }

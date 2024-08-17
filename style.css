@@ -30,7 +30,7 @@ header {
     text-align: left;
 }
 
-#mine-stats span {
+#game-stats span {
     display: block;
 }
 
@@ -63,22 +63,36 @@ header {
     width: 40px;
     height: 40px;
     margin: auto;
-    padding: 2px;
-    background-color: #999;
+    background-color: #322626;
     color: limegreen;
+    font-size: 3px;
 }
 
 .screen-top-bar {
     width: 100%;
-    font-size: 3px;
+    margin: 0px;
     background-color: #008;
     color: #eee;
 }
 
 .crab-char  {
-    width: 5px;
-    height: 5px;
+    width: 100%;
+    padding: 3px;
+    height: 10px;
     background-color: #c34821;
+    border-radius: 0px 0px 3px 3px;
 }
 
+.crab-char img {
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin: auto;
+    border-radius: 50%;
+}
 
+.node-input {
+    width: 35px;
+    height: 35px;
+    margin: auto;
+}

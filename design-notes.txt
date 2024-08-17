@@ -25,3 +25,17 @@ Most hermit crabs molt every 12–18 months."
 -- Whats the 'game world' time like via months
 -- Every 5 mins a crab may grow.. so one at it's full size takes
    50 minutes in game..?
+
+   GAMEPLAY:
+
+    Type commands into the screen areas
+    Keep commands limited
+    Maybe there's some puzzle or bug to solve
+    Maybe their nodes need connected for water or food transport
+    Collect shells
+    Grow the crabs
+    How do crabs die? hmm?
+    -- UI NOTE: 
+        -- instead of having to zoom the whole
+            browser window.. click on a node,
+            it scales up and center.
