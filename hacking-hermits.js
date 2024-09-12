@@ -104,7 +104,7 @@ const game = {
     updateStats: () => {},
 
     // Display action box pop up.
-    // promptMode can be 'mine' or 'kit'
+    // Note: x, and y are the current cursor click coords (reused from mine game)
     displayActionBox: (promptMode, x, y) => {
 
     // If action box X > 2/3 * 2 of screen, subtract action box width 
