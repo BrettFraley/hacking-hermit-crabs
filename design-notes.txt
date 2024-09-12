@@ -39,3 +39,15 @@ Most hermit crabs molt every 12–18 months."
         -- instead of having to zoom the whole
             browser window.. click on a node,
             it scales up and center.
+
+
+UPDATE: CURRENT TODO:
+
+Do stats
+Do animation of crabs..etc..
+Align 'nodes' in columns
+Add water and food meters
+Figure out what goes on the crabs' computer menus and help
+Figure out what commands are and what they do (eg: deliver food, shells, water)...
+GOAL: grow all 15 crabs to 10x over 50 mins (mvp level)
+    - To do so: crabs must coordinate their machines (connect them)
