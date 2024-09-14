@@ -4,11 +4,20 @@ body {
     font-size: 1.2em;
     padding: 10px;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    min-height: 100vh;
 }
 
 header {
     padding: 20px, 20px, 0px, 20px;
+}
+
+#menu {
+    text-align: left;
+}
+#menu span {
+    text-decoration: underline;
+    margin: 15px;
 }
 
 #crab-logo {
@@ -55,6 +64,11 @@ header {
     margin-bottom: 10px;
 }
 
+#arena {
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
 .crab-node {
     display: inline-block;
     width: 70px;
@@ -79,6 +93,7 @@ header {
     margin: 0px;
     background-color: #008;
     color: #eee;
+    text-align: left;
 }
 
 .crab-char  {
@@ -98,7 +113,72 @@ header {
 }
 
 .node-input {
-    width: 35px;
-    height: 35px;
+    width: 55px;
+    height: 55px;
     margin: auto;
+    background-color: #322626;
+    color: limegreen;
+    resize: none;
+}
+
+
+/***
+DEV AND TEST STYLES
+***/
+
+.large-crab-node {
+    display: inline-block;
+    width: 380px;
+    height: 380px;
+    background-color: aqua;
+    color: #111;
+    border-radius: 3px;
+    margin: 10px;
+    margin-bottom: 50px;
+}
+
+.large-screen {
+    width: 360px;
+    height: 360px;
+    margin: auto;
+    background-color: #322626;
+    color: limegreen;
+    font-size: 16px;
+}
+
+.large-screen-top-bar {
+    width: 100%;
+    margin: 0px;
+    background-color: #008;
+    color: #eee;
+    text-align: left;
+}
+
+.large-screen-top-bar span {
+    margin-right: 15px;
+}
+
+.large-crab-char  {
+    width: 100%;
+    padding: 3px;
+    height: 100px;
+    background-color: #c34821;
+    border-radius: 0px 0px 3px 3px;
+}
+
+.large-crab-char img {
+    display: block;
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.large-node-input {
+    min-width: 330px;
+    min-height: 330px;
+    margin: auto;
+    background-color: #322626;
+    color: limegreen;
+    resize: none;
 }

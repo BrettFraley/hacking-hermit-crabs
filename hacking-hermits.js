@@ -1,12 +1,13 @@
 
 // DOM Utils
 const dom = {
-    getEl: id => document.getElementById(id),
+    byEl: id => document.getElementById(id),
+    byClass: name => document.getElementsByClassName(name),
     createEl: type => document.createElement(type),
     assignClass: (el, name) => el.className = name,
     assignId: (el, name) => el.id = name,
     appendEl: (parentId, el) => {
-        let parent = dom.getEl(parentId)
+        let parent = dom.byEl(parentId)
         parent.appendChild(el)
     },
     getCursor: event => {
@@ -18,30 +19,30 @@ const dom = {
     getBodyWidth: () => document.body.clientWidth
 }
 
-
 const CONFIG = {
     crabImagePath: 'hermit-crab.webp',
-    nodeAmount: 15
+    nodeAmount: 16
 }
 
 // DOM Elements
-const beginButton = dom.getEl('load-arena-button')
-const gameStats = dom.getEl('game-stats')
-const actionBox = dom.getEl('action-box')
-const actionBoxContent = dom.getEl('action-box-content')
-const clearActionButton = dom.getEl('clear-action-button')
+const menu = dom.byEl('menu')
+const beginButton = dom.byEl('load-arena-button')
+const gameStats = dom.byEl('game-stats')
+const actionBox = dom.byEl('action-box')
+const actionBoxContent = dom.byEl('action-box-content')
+const clearActionButton = dom.byEl('clear-action-button')
+const crabLogo = dom.byEl('crab-logo')
 
 // Event Listeners
 beginButton.addEventListener('click', () => {
     beginButton.style.display = 'none'
-    gameStats.style.display='block'
+    // gameStats.style.display='block'
     game.init()
 }, false)
 
 clearActionButton.addEventListener('click', () => {
     actionBox.style.display = 'none'
 }, false)
-
 
 const game = {
 
@@ -97,9 +98,34 @@ const game = {
         crabChar.appendChild(crabImg)
         
         crabNode.id = `${id}-crab-node`
+
+        crabNode.addEventListener('click', () => {
+            game.enlargeCrabNode(crabNode)
+        }, false)
+
         return crabNode
     },
 
+    parseCrabId: idName => idName.split('-')[0],
+    getCrabNodeByClassIndex: (name, index) => dom.byClass(name)[index],
+
+    enlargeCrabNode: crabNodeElement => {
+        let id = game.parseCrabId(crabNodeElement.id)
+        console.log(id)
+        crabNodeElement.className = 'large-crab-node'
+
+        // .screen
+        const screen = game.getCrabNodeByClassIndex('screen', id)
+        screen.className = 'large-screen'
+
+        // .node-input
+        const textarea = game.getCrabNodeByClassIndex('node-input', id)
+        textarea.className = 'large-node-input'
+
+        // .crab-char
+        const char = game.getCrabNodeByClassIndex('crab-char', id)
+        char.className = 'large-crab-char'
+    },
 
     updateStats: () => {},
 
@@ -107,8 +133,8 @@ const game = {
     // Note: x, and y are the current cursor click coords (reused from mine game)
     displayActionBox: (promptMode, x, y) => {
 
-    // If action box X > 2/3 * 2 of screen, subtract action box width 
-    x -= x > (Math.floor(dom.getBodyWidth() / 3) * 2) ? 300 : 0
+        // If action box X > 2/3 * 2 of screen, subtract action box width 
+        x -= x > (Math.floor(dom.getBodyWidth() / 3) * 2) ? 300 : 0
         actionBox.style.display = "block"
         actionBox.style.position = "fixed"
         actionBox.style.left = `${x}px`

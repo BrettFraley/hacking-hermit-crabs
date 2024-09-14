@@ -43,11 +43,33 @@ Most hermit crabs molt every 12–18 months."
 
 UPDATE: CURRENT TODO:
 
-Do stats
+Do stats (food inventory, water supply, shells)
+
 Do animation of crabs..etc..
-Align 'nodes' in columns
+
 Add water and food meters
 Figure out what goes on the crabs' computer menus and help
 Figure out what commands are and what they do (eg: deliver food, shells, water)...
 GOAL: grow all 15 crabs to 10x over 50 mins (mvp level)
     - To do so: crabs must coordinate their machines (connect them)
+
+
+
+Hacking Hermit Crabs is a quirky and inventive game where players control a group of clever hermit crabs who must program virtual machines to survive.
+
+ Using in-game computers, these crabs hack and code commands to operate complex machinery, gather essential resources like food and water, and find bigger shells as they grow. The more they evolve, the more intricate the challenges become, requiring creative coding to unlock new tools and keep up with their ever-expanding needs. 
+ 
+ It's a fun fusion of programming, problem-solving, and survival strategy!
+
+
+
+
+
+
+
+
+
+
+
+
+    
