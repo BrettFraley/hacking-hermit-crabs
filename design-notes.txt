@@ -66,7 +66,14 @@ in them.. and the first machines they use are little cranes that go out on a x, 
 to gather and deliver resources... hence the commands for the computers control the movement
 and actions of the machines.. eg: gather food from x, y, z | deliver water to 'crab name'..etc
 
-
+UPDATE: MINIMAL CONCEPT TO REACH...
+-------------------------------
+    // So maybe in time crab auto consumes water and food,
+    // and player job/goal is to supply the crabs through machine commands
+    // Time will tick and health reduces...and crabs will consume as they need..
+    // and over time they will molt..only if larger shells are available
+    // if can't molt, or water is zero or food is zero... game over
+    // If all 16 crabs molt to 10...WINNER
 
 
 

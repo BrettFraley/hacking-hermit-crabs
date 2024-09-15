@@ -128,13 +128,12 @@ header {
 /* .lg expandede crab node*/
 .crab-node.lg {
     position: fixed;
-    top: 20px;
+    top: 15%;
     left: 30%;
     display: block;
     width: 40%;
-    height: 380px; /*make me a %*/
+    height: 65%; /*make me a %*/
     margin: auto;
-    margin-bottom: 75px;
 }
 
 .screen.lg {

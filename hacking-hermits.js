@@ -27,7 +27,31 @@ const dom = {
 const CONFIG = {
     crabImagePath: 'hermit-crab.webp',
     nodeAmount: 16,
-    crabNodeClassNames: ['screen', 'node-input', 'crab-area']
+    crabNodeClassNames: ['screen', 'node-input', 'crab-area'],
+    waterSupply: 0,
+    waterHealth: 100,
+    foodSupply: 0,
+    foodHealth: 100,
+
+    timing: { 
+        food: 60000,
+        water: 30000,  
+        shell: 180000
+    }
+}
+
+class CrabNode {
+    constructor(id, crab) {
+        this.id = id
+        this.crab = crab
+    }
+    waterSupply = CONFIG.waterSupply; 
+    foodSupply = CONFIG.waterHealth;
+}
+
+class Crab {
+    waterHealth = CONFIG.waterHealth;
+    foodHealth = CONFIG.foodHealth;
 }
 
 // DOM Elements
@@ -50,7 +74,11 @@ const game = {
 
     crabNodes: [],
     playerStats: {},
-    gameStats: {},
+    gameStats: {
+        time: {
+            totalMins: 0,
+        }
+    },
 
     dialog: {
  	    instructions: {
@@ -59,9 +87,31 @@ const game = {
 	    },
     },
 
+    worldClock: {
+        start: () => {
+            let flip = false // Flips every minute
+            setInterval(() => {
+                flip = flip ? false : true
+                if (flip) {
+                    game.crabNodes.map(each => each.node.crab.foodHealth -= 10)
+                    game.gameStats.totalMins += 1
+                }
+                game.crabNodes.map(each => each.node.crab.waterHealth -= 10)
+
+                console.table(game.crabNodes[0].node.crab)
+            }, 5000)
+        }  
+    },
+
     init() {
+
+        game.worldClock.start()
+
         for (let i = 0; i < CONFIG.nodeAmount; i++) {
-            game.crabNodes.push(game.generateNode(i)) // i is used for node ids
+            game.crabNodes.push({
+                node: new CrabNode(i, new Crab()),
+                el: game.generateNode(i)
+            })
         }
     },
 
