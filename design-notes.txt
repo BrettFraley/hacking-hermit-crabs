@@ -75,6 +75,20 @@ UPDATE: MINIMAL CONCEPT TO REACH...
     // if can't molt, or water is zero or food is zero... game over
     // If all 16 crabs molt to 10...WINNER
 
+UPDATE: CRAB PROPERTIES:
+   - Crabs need a size property (goal is to reach 10)
+      -- larger crabs need to consume more food and water more often
+
+   - There can be 1 'gathering/machine/crane or other tool' that all use
+      -- and only one process can be carried out by any one 'crab node'
+         at a time..hence the concept of queing jobs..
+      -- and or additional 'machinery' can be acquired
+
+   - // TODO: molt times will be dynamic per crab's size
+
+   - Top menu bars of node computers should have a blue or reduces
+     status indicating either a health issue or supply issue
+
 
 
 

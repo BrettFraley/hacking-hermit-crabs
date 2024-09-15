@@ -32,11 +32,14 @@ const CONFIG = {
     waterHealth: 100,
     foodSupply: 0,
     foodHealth: 100,
+    shellSupply: 1,
+    crabSizeGoal: 10,
 
-    timing: { 
+    timing: {
+        tick: 30000,
         food: 60000,
         water: 30000,  
-        shell: 180000
+        shell: 1
     }
 }
 
@@ -45,13 +48,19 @@ class CrabNode {
         this.id = id
         this.crab = crab
     }
-    waterSupply = CONFIG.waterSupply; 
-    foodSupply = CONFIG.waterHealth;
+    waterSupply = CONFIG.waterSupply
+    foodSupply = CONFIG.waterHealth
+    shellSupply = CONFIG.shellSupply
+    UI = {
+        statusColor: '#008',
+    }
 }
 
 class Crab {
-    waterHealth = CONFIG.waterHealth;
-    foodHealth = CONFIG.foodHealth;
+    waterHealth = CONFIG.waterHealth
+    foodHealth = CONFIG.foodHealth
+    size = 1
+    alive = true
 }
 
 // DOM Elements
@@ -90,16 +99,29 @@ const game = {
     worldClock: {
         start: () => {
             let flip = false // Flips every minute
+
             setInterval(() => {
+                const totalMins = game.gameStats.time.totalMins
                 flip = flip ? false : true
+
+                // Food health
                 if (flip) {
                     game.crabNodes.map(each => each.node.crab.foodHealth -= 10)
-                    game.gameStats.totalMins += 1
+                    game.gameStats.time.totalMins += 1
+                    console.log('Game Mins: ', game.gameStats.time.totalMins)
                 }
+
+                // Shell (it's time to molt)
+                if (totalMins > 0 && totalMins % CONFIG.timing.shell === 0) {
+                    console.log('Molting Time!')
+                    game.crabNodes.map(each => game.moltCrab(each.node))
+                }
+
+                // Water health (fastest consumed, @ each 'CONFIG.tick')
                 game.crabNodes.map(each => each.node.crab.waterHealth -= 10)
 
                 console.table(game.crabNodes[0].node.crab)
-            }, 5000)
+            }, 5000) // CONFIG.timing.tick
         }  
     },
 
@@ -184,5 +206,16 @@ const game = {
                 .classList.replace(size[0], size[1])
         })
     },
+
+    moltCrab: crabNode => {
+        
+        if (crabNode.shellSupply > 0) {
+            crabNode.crab.size += 1
+            crabNode.shellSupply -= 1
+        }
+        else {
+            crabNode.crab.alive = false
+        }
+    }
 
 }
