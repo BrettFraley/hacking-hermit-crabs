@@ -1,3 +1,8 @@
+/**
+ *  HACKING HERMIT CRABS by haxxr492 (Brett Fraley) Copyright 2024
+ *  Unlicensed until hermit crabs are hacking their way to survive.
+ */
+
 
 // DOM Utils
 const dom = {
@@ -21,7 +26,8 @@ const dom = {
 
 const CONFIG = {
     crabImagePath: 'hermit-crab.webp',
-    nodeAmount: 16
+    nodeAmount: 16,
+    crabNodeClassNames: ['screen', 'node-input', 'crab-area']
 }
 
 // DOM Elements
@@ -36,12 +42,8 @@ const crabLogo = dom.byEl('crab-logo')
 // Event Listeners
 beginButton.addEventListener('click', () => {
     beginButton.style.display = 'none'
-    // gameStats.style.display='block'
+    crabLogo.style.display = 'none'
     game.init()
-}, false)
-
-clearActionButton.addEventListener('click', () => {
-    actionBox.style.display = 'none'
 }, false)
 
 const game = {
@@ -66,11 +68,10 @@ const game = {
     generateNode: id => {
 
         const crabNode =  dom.createEl('div')
-        dom.assignClass(crabNode, 'crab-node')
-        dom.appendEl('arena', crabNode)
+        dom.assignClass(crabNode, 'crab-node sm')
 
         const screen = dom.createEl('div')
-        dom.assignClass(screen, 'screen')
+        dom.assignClass(screen, 'screen sm')
 
         const screenTopBar = dom.createEl('p')        
         dom.assignClass(screenTopBar, 'screen-top-bar')
@@ -81,64 +82,57 @@ const game = {
         help.innerText = 'Help'
 
         const nodeInput = dom.createEl('textarea')
-        dom.assignClass(nodeInput, 'node-input')
+        nodeInput.placeholder = `CRAB STATION: NO: ${id}`
+        dom.assignClass(nodeInput, 'node-input sm')
 
         const crabChar = dom.createEl('div')
-        dom.assignClass(crabChar, 'crab-char')
+        dom.assignClass(crabChar, 'crab-area sm')
 
         const crabImg = dom.createEl('img')
         crabImg.src = CONFIG.crabImagePath
 
-        crabNode.appendChild(screen)
         screen.appendChild(screenTopBar)
         screenTopBar.appendChild(menu)
         screenTopBar.appendChild(help)
         screen.appendChild(nodeInput)
-        crabNode.appendChild(crabChar)
-        crabChar.appendChild(crabImg)
         
         crabNode.id = `${id}-crab-node`
 
+        // NOTE: It matters that crabNode appends to arena last.
+        crabNode.appendChild(screen)
+        crabNode.appendChild(crabChar)
+        crabChar.appendChild(crabImg)
+        dom.appendEl('arena', crabNode)
+
         crabNode.addEventListener('click', () => {
-            game.enlargeCrabNode(crabNode)
+            game.resizeCrabNode(crabNode)
         }, false)
 
         return crabNode
     },
 
+    // Parse out the crab node index id from id name eg: '9-crab-node'
     parseCrabId: idName => idName.split('-')[0],
-    getCrabNodeByClassIndex: (name, index) => dom.byClass(name)[index],
 
-    enlargeCrabNode: crabNodeElement => {
-        let id = game.parseCrabId(crabNodeElement.id)
-        console.log(id)
-        crabNodeElement.className = 'large-crab-node'
+    resizeCrabNode: crabNodeElement => {
 
-        // .screen
-        const screen = game.getCrabNodeByClassIndex('screen', id)
-        screen.className = 'large-screen'
+        // Get the single 'active crab node'
+        const currentCrabNode = dom.byClass('crab-node lg')[0] || null
 
-        // .node-input
-        const textarea = game.getCrabNodeByClassIndex('node-input', id)
-        textarea.className = 'large-node-input'
+        if (currentCrabNode && currentCrabNode.id !== crabNodeElement.id) {
+            game.resizeCrabNode(currentCrabNode)
+        }
+        
+        const id = game.parseCrabId(crabNodeElement.id)
+        const isSmall = crabNodeElement.classList.contains('sm')
+        const size = isSmall ? ['sm', 'lg'] : ['lg', 'sm']
+        
+        crabNodeElement.classList.replace(size[0], size[1])
 
-        // .crab-char
-        const char = game.getCrabNodeByClassIndex('crab-char', id)
-        char.className = 'large-crab-char'
-    },
-
-    updateStats: () => {},
-
-    // Display action box pop up.
-    // Note: x, and y are the current cursor click coords (reused from mine game)
-    displayActionBox: (promptMode, x, y) => {
-
-        // If action box X > 2/3 * 2 of screen, subtract action box width 
-        x -= x > (Math.floor(dom.getBodyWidth() / 3) * 2) ? 300 : 0
-        actionBox.style.display = "block"
-        actionBox.style.position = "fixed"
-        actionBox.style.left = `${x}px`
-        actionBox.style.top = `${y}px`
+        CONFIG.crabNodeClassNames.forEach(name => {
+            crabNodeElement.getElementsByClassName(name)[0]
+                .classList.replace(size[0], size[1])
+        })
     },
 
 }
