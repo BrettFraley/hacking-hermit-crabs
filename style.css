@@ -26,6 +26,10 @@ header {
     height: 250px;
 }
 
+#load-arena-button {
+    border-radius: 10px;
+}
+
 .bungee-tint-regular {
     font-family: "Bungee Tint", sans-serif;
     font-weight: 400;

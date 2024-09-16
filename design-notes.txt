@@ -89,6 +89,10 @@ UPDATE: CRAB PROPERTIES:
    - Top menu bars of node computers should have a blue or reduces
      status indicating either a health issue or supply issue
 
+     TASKS NOW:
+     1. IF food low, IF water low, or zero shells --- red menu bar
+     2. Create first input / output command / interaction on node 1
+
 
 
 
