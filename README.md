@@ -1,6 +1,6 @@
 # Hacking Hermit Crabs
 
-[Hacking hermit Crabs Logo](hermit-crab.webp)
+[Hacking hermit Crabs Logo](hermit-crab.png)
 
 Hacking Hermit Crabs is a quirky and inventive game where players control a group of clever hermit crabs who must program virtual machines to survive.
 
