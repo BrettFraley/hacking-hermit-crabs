@@ -80,6 +80,8 @@ const clearActionButton = dom.byId('clear-action-button')
 const crabLogo = dom.byId('crab-logo')
 const gameWrapper = dom.byId('game-wrapper')
 const headerBreaker =dom.byId('header-breaker')
+const habitatScene =dom.byId('habitat-scene')
+
 
 // Event Listeners
 startButton.addEventListener('click', () => {
@@ -87,6 +89,7 @@ startButton.addEventListener('click', () => {
     dom.displayNone(crabLogo)
     dom.displayNone(headerBreaker)
     dom.show(gameWrapper)
+    dom.show(habitatScene)
 
     game.init()
 }, false)
