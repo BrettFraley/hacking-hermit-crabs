@@ -5,16 +5,17 @@ body {
     padding: 10px;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    min-height: 100vh;
+    height: 100vh;
+    min-width: 480px;
+    min-height: 480px;
 }
 
 header {
     padding: 20px, 20px, 0px, 20px;
+    height: 15vh;
 }
 
-#menu {
-    text-align: left;
-}
+#menu { text-align: left; }
 #menu span { text-decoration: underline; margin: 15px; }
 #menu span a { text-decoration: none; }
 #menu span:hover { text-shadow: 0px 0px 10px #008fcc; }
@@ -35,21 +36,11 @@ header {
     font-style: normal;
   }  
 
-#game-stats {
-    display: none;
-    background-color: #999;
-    padding: 5px;
-    border-radius: 5px;
-    position: fixed;
-    top: 10%;
-    margin-left: 10px;
-    opacity: 0.8;
-    min-width: 150px;
-    text-align: left;
-}
-
-#game-stats span {
-    display: block;
+#game-wrapper {
+    background-image: url('hacking-hermit-crabs-banner-scene.webp');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #action-box {
@@ -71,10 +62,6 @@ header {
     width: 100%;
     height: 45%;
     min-height: 400px;
-    background-image: url('hacking-hermit-crabs-banner-scene.webp');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
     visibility: hidden;
 }
 
@@ -150,24 +137,41 @@ header {
     height: 65%;
     margin: auto;
 }
+.screen.lg { font-size: 16px; }
+.screen.lg .screen-top-bar span { margin-right: 15px; }
 
-.screen.lg {
-    font-size: 16px;
-}
-
-.screen.lg .screen-top-bar span {
-    margin-right: 15px;
-}
-
-.node-input.lg {
-    box-shadow: inset 0 0 7px yellow;
-}
-
-.crab-area.lg  {
-    height: 25%;
-}
+.node-input.lg { box-shadow: inset 0 0 7px yellow; }
+.crab-area.lg  { height: 25%; }
 
 .crab-area.lg img {
     width: 75px;
     height: 75px;
+}
+
+/** Habitat */
+.habitat-scene {
+    width: 65%;
+    margin: 40px auto;
+}
+
+.habitat-row {
+    width: 100%;
+    margin: 15px auto;
+}
+
+.habitat-row:nth-child(2) { padding-left: 4vw; }
+.habitat-row:nth-child(3) { padding-left: 8vw; }
+
+.habitat-cell {
+    display: inline-block;
+    width: 3vw;
+    height: 3vw;
+    margin: -10px 25px;
+    border: solid 2px lime;
+    transform:rotate(-26deg) skewX(40deg) skewY(40deg);
+}
+
+.habitat-skew {
+    border: solid 3px lime;
+    transform:rotate(-26deg) skewX(40deg) skewY(40deg);
 }

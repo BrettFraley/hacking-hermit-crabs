@@ -3,7 +3,6 @@
  *  Unlicensed until hermit crabs are hacking their way to survive.
  */
 
-
 // DOM Utils
 const dom = {
     byId: id => document.getElementById(id),
@@ -22,9 +21,7 @@ const dom = {
         }
     },
     display: el => {
-        console.log(el, el.style.display)
         el.style.display = 'block'
-        console.log(el.style.display)
     },
     displayBlock: el => el.style.display = 'block',
     displayNone: el => el.style.display = 'none',
@@ -35,20 +32,20 @@ const dom = {
 
 const CONFIG = {
     crabImagePath: 'hermit-crab.webp',
-    nodeAmount: 16,
+    nodeAmount: 4,
     crabNodeClassNames: ['screen', 'node-input', 'crab-area'],
     waterSupply: 0,
     waterHealth: 100,
     foodSupply: 0,
     foodHealth: 100,
-    shellSupply: 1,
+    shellSupply: 2,
     crabSizeGoal: 10,
 
     timing: {
         tick: 30000,
         food: 60000,
         water: 30000,  
-        shell: 1
+        molt: 2 // mins
     }
 }
 
@@ -69,6 +66,7 @@ class Crab {
     waterHealth = CONFIG.waterHealth
     foodHealth = CONFIG.foodHealth
     size = 1
+    status = "Safe"
     alive = true
 }
 
@@ -110,13 +108,13 @@ const game = {
 
     worldClock: {
         start: () => {
-            let flip = false // Flips every minute
+            let flip = false // Flips every minute or every other clock tick
 
             setInterval(() => {
                 const totalMins = game.gameStats.time.totalMins
                 flip = flip ? false : true
 
-                // Food health
+                // Food health 
                 if (flip) {
                     game.crabNodes.map(each => each.node.crab.foodHealth -= 10)
                     game.gameStats.time.totalMins += 1
@@ -132,19 +130,16 @@ const game = {
                 // Water health (fastest consumed, @ each 'CONFIG.tick')
                 game.crabNodes.map(each => {
                     each.node.crab.waterHealth -= 10
-
-                    if (each.node.crab.waterSupply <= 20 ||
-                        each.node.crab.foodSupply <= 20  ||
-                        each.node.crab.shellSupply < 3) {
-                        console.log('crab in danger!!!')
-                        let topBar =  each.node.getElementsByClassName('screen-top-bar')[0]
-                        console.log(topBar)
-                        each.node.UI.statusColor = "red" //NOTE: maybe pass in a status to an upDateNodeStausBar function
-                        topBar.style.backGroundColor = each.node.UI.statusColor
+                    if (each.node.waterSupply <= 20 ||
+                        each.node.foodSupply <= 20  ||
+                        each.node.shellSupply < 2) {
+                        each.node.status = 'Danger'
+                        let topBar =  each.el.getElementsByClassName('screen-top-bar')[0]
+                        each.node.UI.statusColor = '#c34821' //NOTE: maybe pass in a status to an upDateNodeStausBar function
+                        topBar.style.backgroundColor = each.node.UI.statusColor
                     }
                 })
-
-                console.table(game.crabNodes[0].node.crab)
+                console.table(game.crabNodes[0].node)
             }, 5000) // CONFIG.timing.tick
         }  
     },
