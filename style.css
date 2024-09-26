@@ -37,6 +37,7 @@ header {
   }  
 
 #game-wrapper {
+    visibility: hidden;
     background-image: url('hacking-hermit-crabs-banner-scene.webp');
     background-size: contain;
     background-position: center;

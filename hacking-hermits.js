@@ -78,13 +78,15 @@ const actionBox = dom.byId('action-box')
 const actionBoxContent = dom.byId('action-box-content')
 const clearActionButton = dom.byId('clear-action-button')
 const crabLogo = dom.byId('crab-logo')
-const habitatScene = dom.byId('habitat-scene')
+const gameWrapper = dom.byId('game-wrapper')
+const headerBreaker =dom.byId('header-breaker')
 
 // Event Listeners
 startButton.addEventListener('click', () => {
     dom.displayNone(startButton)
     dom.displayNone(crabLogo)
-    dom.show(habitatScene)
+    dom.displayNone(headerBreaker)
+    dom.show(gameWrapper)
 
     game.init()
 }, false)
