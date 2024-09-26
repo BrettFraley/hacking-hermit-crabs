@@ -91,7 +91,11 @@ UPDATE: CRAB PROPERTIES:
 
      TASKS NOW:
      1. IF food low, IF water low, or zero shells --- red menu bar
-     2. Create first input / output command / interaction on node 1
+     2. Add New Game link [DONE]
+     3. Do the 'field' background and the 'items grid' [WIP]
+     4. Get/Make a 'crane machine'
+     5. Start to modularize into seperate files 
+     6. Create first input / output command / interaction on node 1
 
 
 

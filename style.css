@@ -15,10 +15,9 @@ header {
 #menu {
     text-align: left;
 }
-#menu span {
-    text-decoration: underline;
-    margin: 15px;
-}
+#menu span { text-decoration: underline; margin: 15px; }
+#menu span a { text-decoration: none; }
+#menu span:hover { text-shadow: 0px 0px 10px #008fcc; }
 
 #crab-logo {
     margin: auto;
@@ -68,6 +67,17 @@ header {
     margin-bottom: 10px;
 }
 
+#habitat-scene {
+    width: 100%;
+    height: 45%;
+    min-height: 400px;
+    background-image: url('hacking-hermit-crabs-banner-scene.webp');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    visibility: hidden;
+}
+
 #arena {
     padding: 25px;
     margin-bottom: 25px;
@@ -110,6 +120,7 @@ header {
     background-color: #322626;
     color: limegreen;
     resize: none;
+    font-size: 1.8em
 }
 
 .crab-area  {
@@ -129,14 +140,14 @@ header {
     border-radius: 50%;
 }
 
-/* .lg expandede crab node*/
+/* .lg expanded crab node*/
 .crab-node.lg {
     position: fixed;
     top: 15%;
     left: 30%;
     display: block;
     width: 40%;
-    height: 65%; /*make me a %*/
+    height: 65%;
     margin: auto;
 }
 

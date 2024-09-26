@@ -6,13 +6,13 @@
 
 // DOM Utils
 const dom = {
-    byEl: id => document.getElementById(id),
+    byId: id => document.getElementById(id),
     byClass: name => document.getElementsByClassName(name),
     createEl: type => document.createElement(type),
     assignClass: (el, name) => el.className = name,
     assignId: (el, name) => el.id = name,
     appendEl: (parentId, el) => {
-        let parent = dom.byEl(parentId)
+        let parent = dom.byId(parentId)
         parent.appendChild(el)
     },
     getCursor: event => {
@@ -21,6 +21,15 @@ const dom = {
             y: event.clientY
         }
     },
+    display: el => {
+        console.log(el, el.style.display)
+        el.style.display = 'block'
+        console.log(el.style.display)
+    },
+    displayBlock: el => el.style.display = 'block',
+    displayNone: el => el.style.display = 'none',
+    hide: el => el.stlye.visibility = 'hidden',
+    show: el => el.style.visibility = 'visible',
     getBodyWidth: () => document.body.clientWidth
 }
 
@@ -64,18 +73,21 @@ class Crab {
 }
 
 // DOM Elements
-const menu = dom.byEl('menu')
-const beginButton = dom.byEl('load-arena-button')
-const gameStats = dom.byEl('game-stats')
-const actionBox = dom.byEl('action-box')
-const actionBoxContent = dom.byEl('action-box-content')
-const clearActionButton = dom.byEl('clear-action-button')
-const crabLogo = dom.byEl('crab-logo')
+const menu = dom.byId('menu')
+const startButton = dom.byId('load-arena-button')
+const gameStats = dom.byId('game-stats')
+const actionBox = dom.byId('action-box')
+const actionBoxContent = dom.byId('action-box-content')
+const clearActionButton = dom.byId('clear-action-button')
+const crabLogo = dom.byId('crab-logo')
+const habitatScene = dom.byId('habitat-scene')
 
 // Event Listeners
-beginButton.addEventListener('click', () => {
-    beginButton.style.display = 'none'
-    crabLogo.style.display = 'none'
+startButton.addEventListener('click', () => {
+    dom.displayNone(startButton)
+    dom.displayNone(crabLogo)
+    dom.show(habitatScene)
+
     game.init()
 }, false)
 
@@ -118,7 +130,19 @@ const game = {
                 }
 
                 // Water health (fastest consumed, @ each 'CONFIG.tick')
-                game.crabNodes.map(each => each.node.crab.waterHealth -= 10)
+                game.crabNodes.map(each => {
+                    each.node.crab.waterHealth -= 10
+
+                    if (each.node.crab.waterSupply <= 20 ||
+                        each.node.crab.foodSupply <= 20  ||
+                        each.node.crab.shellSupply < 3) {
+                        console.log('crab in danger!!!')
+                        let topBar =  each.node.getElementsByClassName('screen-top-bar')[0]
+                        console.log(topBar)
+                        each.node.UI.statusColor = "red" //NOTE: maybe pass in a status to an upDateNodeStausBar function
+                        topBar.style.backGroundColor = each.node.UI.statusColor
+                    }
+                })
 
                 console.table(game.crabNodes[0].node.crab)
             }, 5000) // CONFIG.timing.tick
